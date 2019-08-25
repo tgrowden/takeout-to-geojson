@@ -1,0 +1,75 @@
+{
+  "name": "takeout-to-geojson",
+  "version": "0.0.1",
+  "description": "Convert Google Takeout location history to GeoJSON",
+  "main": "dist/index.js",
+  "author": "Taylor Growden <taylor.growden@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "/dist"
+  ],
+  "keywords": [
+    "Location History",
+    "GeoJSON",
+    "Google Takeout",
+    "map"
+  ],
+  "devDependencies": {
+    "@types/geojson": "^7946.0.7",
+    "@types/jest": "^24.0.18",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-typescript": "^4.0.1",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "geojson": "^0.5.0",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.2.3",
+    "prettier-eslint-cli": "^5.0.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.ts ./",
+    "build": "tsc",
+    "clean": "rimraf ./dist ./takeout-to-geojson-v*.tgz",
+    "test": "jest",
+    "format": "prettier-eslint \"src/**/*.ts\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts": "tsc --noEmit",
+    "**/*.{ts,js}": [
+      "prettier-eslint --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "warnOnly": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "remove": "^0.1.5"
+  }
+}
