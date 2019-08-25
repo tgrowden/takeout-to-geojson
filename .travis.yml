@@ -1,11 +1,13 @@
 language: node_js
 cache: yarn
 
+script:
+  - yarn lint
+  - yarn typecheck
+  - yarn test
+
 jobs:
   include:
-    - yarn lint
-    - yarn typecheck
-    - yarn test
     - stage: npm release
       script: yarn build
       deploy:
@@ -25,7 +27,6 @@ jobs:
         provider: pages
         skip_cleanup: true
         github_token: $GH_TOKEN
-        keep_history: true
         on:
           branch: master
           repo: tgrowden/takeout-to-geojson
