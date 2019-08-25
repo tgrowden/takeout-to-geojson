@@ -1,0 +1,31 @@
+language: node_js
+cache: yarn
+
+jobs:
+  include:
+    - yarn lint
+    - yarn typecheck
+    - yarn test
+    - stage: npm release
+      script: yarn build
+      deploy:
+        skip_cleanup: true
+        provider: npm
+        email: taylorgrowden@gmail.com
+        api_key:
+          secure: ZPIzsB3psJ0vjUAJNQWfxEGNyWqi7o+PaDywzoJAEOHztiJk0TB41dQ0GNoRFQ/nSGxwosAlrOhGGdWkZZLELeuULnvHbP3W1Sy2782WogBMfVJc0GBzE0qBGN76au6Eb4trzacKwm/Wr/TGOOuLDd+7t1FpoiAi0IChrWPz0O4+FjHXFnPWPx2tYz7KJuFa5rE3LdIoPL+x0CaZSQA+hkCsbTl6h75yh+Hv1vTJxEdxYeYOA6ujU/gs131iOOeUq2/PwE3qwz/eKo4ZY59l5OMJzZfS9j+frh+KJqQ37I5RrlnIebVhYsQ9WpTbOZ4T0aAASNUhh5MYILMYgOHK3pwDqmpnJwrFCMma1fdE8Sk8TIFNay1RuYVPoBlZPbpRqNvKtBQUlKT2HCKSDUNdWjXwLedcl1oEPz2OaQsanfUOjUhWpykajrfhyb4mP8jOQWXXQF3zCdNvG2VCuwHpPBPqXVnCvhRqHfEFqFP76GITDLG9JBHF1cw18YvyvTYbomnAgkwTqn2JPcWFJLjicl5g1l0aqDmwTFIRojWSkqQgqlEE8XYWmAJ4pzGaTdkotdl7HXh7Lkd/q7cYgARplXoGTPQv0xP1wWWerQhQownYHiygD3bS7DTIN+8d+RCIiIAun82IFKz1azkm9UcpFZ+c1LOJlG18L8rUq6Bq/rI=
+        on:
+          tags: true
+          repo: tgrowden/takeout-to-geojson
+
+    - stage: gh pages
+      script: yarn docs
+      deploy:
+        local_dir: docs
+        provider: pages
+        skip_cleanup: true
+        github_token: $GH_TOKEN
+        keep_history: true
+        on:
+          branch: master
+          repo: tgrowden/takeout-to-geojson
