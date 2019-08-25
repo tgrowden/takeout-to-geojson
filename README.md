@@ -11,3 +11,5 @@ import fileData from 'path/to/exported-file.json'
 
 convert(fileData)
 ```
+
+You can also view the [documentation](https://tgrowden.github.io/takeout-to-geojson/);

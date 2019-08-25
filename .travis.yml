@@ -1,13 +1,10 @@
 language: node_js
 cache: yarn
 
-script:
-  - yarn lint
-  - yarn typecheck
-  - yarn test
-
 jobs:
   include:
+    - stage: test
+      script: yarn lint && yarn typecheck && yarn test
     - stage: npm release
       script: yarn build
       deploy:
