@@ -21,7 +21,7 @@ jobs:
           repo: tgrowden/takeout-to-geojson
 
     - stage: gh pages
-      script: yarn docs
+      script: yarn docs && touch docs/.nojekyll
       deploy:
         local_dir: docs
         provider: pages
