@@ -1,6 +1,6 @@
 {
   "name": "takeout-to-geojson",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Convert Google Takeout location history to GeoJSON",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,6 +21,8 @@
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^2.3.2",
+    "depcheck": "^0.8.3",
     "eslint": "^6.2.2",
     "eslint-config-airbnb-typescript": "^4.0.1",
     "eslint-config-prettier": "^6.1.0",
@@ -42,7 +44,8 @@
     "test": "jest",
     "format": "prettier-eslint \"src/**/*.ts\"",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "docs": "typedoc --out ./docs --exclude \"*.test.ts\""
+    "docs": "typedoc --out ./docs --exclude \"*.test.ts\"",
+    "deps": "depcheck . --ignores=\"@types/jest,eslint-plugin-prettier,husky,lint-staged\""
   },
   "husky": {
     "hooks": {
