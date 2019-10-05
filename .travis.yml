@@ -16,6 +16,7 @@ jobs:
         on:
           tags: true
           repo: tgrowden/takeout-to-geojson
+          branch: master
 
     - stage: gh pages
       script: yarn docs && touch docs/.nojekyll
